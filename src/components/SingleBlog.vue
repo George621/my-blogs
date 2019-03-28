@@ -7,6 +7,10 @@
     <ul>
       <li v-for="(category, index) in blog.categries" :key ="index">{{category}}</li>
     </ul>
+    <button v-on:click="delSingleBlog">删除</button>
+    <router-link :to="'/edit/'+ id">编辑</router-link>
+    <!-- <button v-on:click="editSingleBlog">编辑</button> -->
+
   </div>
 </template>
 
@@ -27,6 +31,17 @@ export default {
     }).then(function (data) {
       this.blog = data;
     })
+  },
+  methods: {
+    delSingleBlog(){
+      this.$http.delete('https://my-blog-1f8f8.firebaseio.com/post/'+ this.id + '.json').
+      then(respones=>{
+        this.$router.push({path:'/'})
+      })
+    },
+    editSingleBlog(){
+      // this.$http.
+    }
   },
 }
 </script>
