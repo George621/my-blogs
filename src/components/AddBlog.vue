@@ -18,7 +18,7 @@
         <input type="checkbox" value='anglular4.js' v-model="blog.categries">
       </div>
       <label>作者</label>
-      <select name="" id="" v-model="blog.author">
+      <select name="author" id="" v-model="blog.author">
         <option v-for="(author, index) in authors" v-bind:key="index">{{author}}</option>
       </select>
       <button v-on:click.prevent="post">添加博客</button>
@@ -99,6 +99,10 @@ export default {
    #checkboxes input{
      display: inline-block;
      margin-right: 10px;
+   }
+   select[name='author']{
+     height: 30px;
+     border: 1px solid #CCC;
    }
    button{
      display: block;
