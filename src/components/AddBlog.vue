@@ -19,7 +19,7 @@
       </div>
       <label>作者</label>
       <select name="" id="" v-model="blog.author">
-        <option v-for="(author, index) in blog.authors" v-bind:key="index">{{author}}</option>
+        <option v-for="(author, index) in authors" v-bind:key="index">{{author}}</option>
       </select>
       <button v-on:click.prevent="post">添加博客</button>
     </form>
@@ -52,22 +52,18 @@ export default {
         title:'',
         content:'',
         categries:[],
-        authors:['george','ada','alice'],
         author:'',
       },
+      authors:['george','ada','alice'],
       submmited: false
     }
   },
   methods:{
     post:function (event) {
       this.$http.post(
-        'https://jsonplaceholder.typicode.com/posts',{
-          title:this.blog.title,
-          body:this.blog.content,
-          serId:1
-        }
-      ).then(function (data) {
-          console.log(data)
+        'https://my-blog-1f8f8.firebaseio.com/post.json',this.blog).
+        then(function (data) {
+          // console.log(data)
           this.submmited = true
       })
     }

@@ -1,11 +1,12 @@
 <template>
-  <div id="show-blogs" v-theme:column="'narrow'">
+  <div id="show-blogs">
+     <!-- v-theme:column="'narrow'" -->
     <h1>博客总览</h1>
     <input type="text" placeholder="search" v-model="search">
     <div class="single-blog" v-for="(blog, index) in filteredBlogs" :key="index">
      <router-link v-bind:to="'/blog/'+blog.id" >
        <h3 v-rainbow>{{blog.title | to-uppercase}}</h3>
-       <article>{{blog.body | snippet}}</article>
+       <article>{{blog.content | snippet}}</article>
      </router-link>
     </div>
   </div>
@@ -21,9 +22,17 @@ export default {
     }
   },
   created() {
-    this.$http.get('../../static/post.json')
+    this.$http.get('https://my-blog-1f8f8.firebaseio.com/post.json')
     .then(function (data) {
-     this.blogs = data.body.slice(0,10)
+      return data.json()
+    }).then(function (data) {
+      let blogsArray = []
+      for( let key in data){
+        data[key].id= key;
+        blogsArray.push(data[key])
+      }
+      this.blogs = blogsArray
+      // console.log(this.blogs)
     })
   },
   computed: {
