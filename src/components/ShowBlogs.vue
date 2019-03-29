@@ -1,5 +1,5 @@
 <template>
-  <div id="show-blogs">
+  <div id="show-blogs" v-theme:column>
      <!-- v-theme:column="'narrow'" -->
     <h1>博客总览</h1>
     <input type="text" placeholder="search" v-model="search">
@@ -49,7 +49,7 @@ export default {
     toUppercase(val) {
       return val.toUpperCase();
     },
-    "snippet":function (val) {
+    snippet (val) {
       return val.slice(0,100) + '...'
     }
   },
