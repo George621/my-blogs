@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+// const axios = require('axios');
 export default {
   name:'add-blog',
   data(){
@@ -60,9 +62,11 @@ export default {
   },
   methods:{
     post:function (event) {
-      this.$http.post(
+      // this.$http vue-source
+      // let _this = this;
+      axios.post(
         'https://my-blog-1f8f8.firebaseio.com/post.json',this.blog).
-        then(function (data) {
+        then((data) => {   //es6  箭头函数 this 指向就对了
           // console.log(data)
           this.submmited = true
       })

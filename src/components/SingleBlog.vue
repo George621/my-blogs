@@ -15,7 +15,7 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
   name: 'single-blog',
   data() {
@@ -25,17 +25,17 @@ export default {
     }
   },
   created() {
-    this.$http.get('https://my-blog-1f8f8.firebaseio.com/post/'+ this.id + '.json')
-    .then(function (data) {
-      return data.json();
-    }).then(function (data) {
+    axios.get('https://my-blog-1f8f8.firebaseio.com/post/'+ this.id + '.json')
+    .then( (data)=> {
+      return data.data;
+    }).then( (data)=> {
       this.blog = data;
     })
   },
   methods: {
     delSingleBlog(){
-      this.$http.delete('https://my-blog-1f8f8.firebaseio.com/post/'+ this.id + '.json').
-      then(respones=>{
+     axios.delete('https://my-blog-1f8f8.firebaseio.com/post/'+ this.id + '.json').
+      then((respones)=>{
         this.$router.push({path:'/'})
       })
     },

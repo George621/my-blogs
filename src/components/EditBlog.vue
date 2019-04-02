@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name:'add-blog',
   data(){
@@ -56,17 +57,17 @@ export default {
   },
   methods:{
     post:function (event) {
-      this.$http.put('https://my-blog-1f8f8.firebaseio.com/post/'+this.id+'.json',this.blog).
-        then(function (data) {
+      axios.put('https://my-blog-1f8f8.firebaseio.com/post/'+this.id+'.json',this.blog).
+        then( (data)=> {
           // console.log(data)
           this.submmited = true
       })
     },
     fetchDate() {
-      this.$http.get('https://my-blog-1f8f8.firebaseio.com/post/'+this.id+'.json').
-      then(function (response) {
-        // console.log(response.body)
-        this.blog = response.body
+      axios.get('https://my-blog-1f8f8.firebaseio.com/post/'+this.id+'.json').
+      then( (response)=> {
+        // console.log(response)
+        this.blog = response.data
       })
     }
   },

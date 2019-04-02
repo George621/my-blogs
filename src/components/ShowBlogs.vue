@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name:'show-blogs',
   data(){
@@ -22,17 +23,16 @@ export default {
     }
   },
   created() {
-    this.$http.get('https://my-blog-1f8f8.firebaseio.com/post.json')
+    axios.get('https://my-blog-1f8f8.firebaseio.com/post.json')
     .then(function (data) {
-      return data.json()
-    }).then(function (data) {
+      return data.data
+    }).then( (data)=> {
       let blogsArray = []
       for( let key in data){
         data[key].id= key;
         blogsArray.push(data[key])
       }
       this.blogs = blogsArray
-      // console.log(this.blogs)
     })
   },
   computed: {

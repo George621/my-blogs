@@ -1,13 +1,17 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import VueResource from 'vue-resource'
+// import VueResource from 'vue-resource'
 import App from './App'
 import VueRouter from 'vue-router'
 import Routes from './routes'
+import axios from 'axios'
+// 全局配置 axios
+axios.defaults.baseUrl = 'https://my-blog-1f8f8.firebaseio.com'
+
 Vue.config.productionTip = false
 
-Vue.use(VueResource)
+// Vue.use(VueResource)
 Vue.use(VueRouter)
 // Vue.directive('rainbow',{
 //   bind(el,binding,vnode){
